@@ -13,7 +13,7 @@
             align-items: center;
             justify-content: center;
             background-color: transparent;
-            color: #9E122C;
+            color: #c01650; /* Pinkish red for general text */
             margin: 0;
             padding: 20px;
         }
@@ -25,17 +25,18 @@
             width: 100%;
         }
         .clock {
-            background: #FCECDF; /* Light peach */
-            border: 1px solid #9E122C; /* Deep red border */
-            border-radius: 8px;
-            padding: 15px;
+            background: #f5c79d; /* Soft peach-orange */
+            border: 2px solid #5a3f6e; /* Muted purple border */
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            color: #9E122C; /* Deep red text */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            color: #39216a; /* Dark bluish-purple for text */
         }
         .clock h3 {
             margin: 0;
             font-size: 1.2em;
+            color: #5a3f6e; /* Muted purple for headings */
         }
         .time, .date {
             margin-top: 10px;
@@ -43,14 +44,16 @@
         }
         .time {
             font-size: 1.5em;
+            color: #39216a; /* Bluish-purple for time */
         }
         .date {
             font-size: 1em;
+            color: #c01650; /* Pinkish red for the date */
         }
     </style>
 </head>
 <body>
-    <h1>World Clock</h1>
+    <h1 style="color: #5a3f6e;">World Clock</h1>
     <div class="clock-container" id="clockContainer">
         <div class="clock" data-timezone="America/New_York">
             <h3>Washington, DC</h3>
