@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock</title>
+    <style>
+        body {
+            font-family: Serif, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #FF920C;
+            color: #61001F;
+            margin: 0;
+            padding: 20px;
+        }
+        .clock-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+        .clock {
+            background: #fff;
+            border: 1px solid #61001F;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #61001F;
+        }
+        .clock h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .time, .date {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .time {
+            font-size: 1.5em;
+        }
+        .date {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>World Clock</h1>
+    <div class="clock-container" id="clockContainer">
+        <div class="clock" data-timezone="America/New_York">
+            <h3>Washington, DC</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+        <div class="clock" data-timezone="America/Mexico_City">
+            <h3>Mexico City</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+        <div class="clock" data-timezone="America/Sao_Paulo">
+            <h3>Rio de Janeiro</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+        <div class="clock" data-timezone="Africa/Lagos">
+            <h3>Lagos</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+        <div class="clock" data-timezone="Africa/Nairobi">
+            <h3>Nairobi</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+        <div class="clock" data-timezone="Asia/Tokyo">
+            <h3>Tokyo</h3>
+            <div class="date">Loading...</div>
+            <div class="time">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const clocks = document.querySelectorAll(".clock");
+            clocks.forEach(clock => {
+                const timezone = clock.getAttribute("data-timezone");
+                const now = new Date().toLocaleString("en-US", { timeZone: timezone });
+                const dateObj = new Date(now);
+
+                // Format the date to dd/mm/yyyy
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const year = dateObj.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
+
+                // Format the time to 12-hour with AM/PM
+                let hours = dateObj.getHours();
+                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12; // Convert 0 hour to 12
+
+                const formattedTime = `${hours}:${minutes} ${ampm}`;
+
+                clock.querySelector(".date").textContent = formattedDate;
+                clock.querySelector(".time").textContent = formattedTime;
+            });
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
